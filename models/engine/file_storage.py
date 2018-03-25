@@ -13,7 +13,7 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         '''
             Return the dictionary
         '''
@@ -53,3 +53,14 @@ class FileStorage:
                 FileStorage.__objects[key] = class_name(**val)
         except FileNotFoundError:
             pass
+
+    def delete(self, obj=None):
+        """
+        Public instance method to delete an object from __objects if there
+        :param obj: The object to be deleted
+        """
+        if obj is None:
+            return
+        else:
+            if obj in self.__objects:
+                del(self.__objects[obj])

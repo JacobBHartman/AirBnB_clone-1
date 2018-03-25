@@ -74,7 +74,7 @@ class test_console(unittest.TestCase):
         sys.stdout = self.backup
         self.assertEqual("** class name missing **\n", x)
 
-    def test_show_class_name(self):
+    def test_show_class_name2(self):
         '''
             Test show message error for id missing
         '''
