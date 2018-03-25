@@ -64,3 +64,4 @@ class FileStorage:
         else:
             if obj in self.__objects:
                 del(self.__objects[obj])
+                self.__objects.save()
