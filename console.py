@@ -47,7 +47,6 @@ class HBNBCommand(cmd.Cmd):
             new_instance = eval(args[0])()
             
             ''' filter the dict '''
-            attributes = {}
             for arg in range(len(args)):
                 if '=' in args[arg]:
                     key, value = args[arg].split('=')
