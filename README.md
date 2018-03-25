@@ -3,6 +3,9 @@
 The Airbnb clone project for which we are creating a copy of the [Airbnb](https://www.airbnb.com/).
 Only some features will be implemented and will be listed below once completed.
 
+## To Do
++ tests for Task 2
++ How come task 2 asks that /models folder be modified?
 
 ## Features
 
@@ -53,3 +56,7 @@ from the root directory.
 ## Bugs
 
 + No known bugs at this time.
+
+## Authors
+Original: Steven Garcia, Binita Rai
+v2: Jacob Biehler, Jacob Hartman
