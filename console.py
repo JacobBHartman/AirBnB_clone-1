@@ -43,14 +43,33 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            args = shlex.split(args)
+            args = shlex.split(args, posix=False)
             new_instance = eval(args[0])()
+            
+            ''' filter the dict '''
+            attributes = {}
+            for arg in range(len(args)):
+                if '=' in args[arg]:
+                    key, value = args[arg].split('=')
+                    if value[0] == "\"":
+                        value = value[1:len(value) - 1]
+                        value = value.replace("_", " ")
+                        for idx in range(len(value)):
+                            if value[idx] == "\"":
+                                value = value[:idx] + "\\" + value[idx:]
+                    elif '.' in value:
+                        value = float(value)
+                    elif value.isdigit():
+                        value = int(value)
+                    else:
+                        break
+                    setattr(new_instance, key, value)
+
             new_instance.save()
             print(new_instance.id)
-
         except:
             print("** class doesn't exist **")
-
+        
     def do_show(self, args):
         '''
             Print the string representation of an instance baed on
