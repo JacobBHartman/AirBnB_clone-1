@@ -70,7 +70,7 @@ class BaseModel:
         cp_dct['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         str_del = "_sa_instance_state"
         if str_del in cp_dct:
-            del(cp_dct[str_del])
+            del cp_dct[str_del]
         return (cp_dct)
 
     def delete(self):
