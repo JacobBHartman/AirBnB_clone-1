@@ -7,7 +7,7 @@ from models.state import State
 from models.city import City
 from os import environ
 from sqlalchemy import create_engine, drop_all
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 
 class DBStorage:
@@ -57,4 +57,26 @@ class DBStorage:
         :param obj: object to be added
         """
         self.__session.add(obj)
+        # self.save()
+
+    def save(self):
+        """
+        commit all changes of the current database session
+        """
         self.__session.commit()
+
+    def delete(self, obj=None):
+        """
+        delete from the current database session, the object
+        """
+        if obj is not None:
+            self.__session.delete(obj)
+
+    def reload(self):
+        """
+        create all tables in the database
+        """
+        Base.metadata.create_all(engine)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session()

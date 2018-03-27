@@ -6,8 +6,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from models import storage # IF THERES A CIRCULAR DEPENDENCY It MIGHT BE THIS
-
+from os import getenv
 
 class State(BaseModel, Base):
     '''
