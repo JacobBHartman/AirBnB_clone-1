@@ -44,18 +44,15 @@ class DBStorage:
         if cls is None:
             target_classes = list(classes.values())
         elif cls is not None and cls in classes:
-            print("enter elif")
-            target_classes = [cls]
+            target_classes = [classes[cls]]
 
         instance_dict = {}
         for each_class in target_classes:
-            loaded_objects = self.__session.query(each_class).all()
+            loaded_objects = self.__session.query(each_class)
             for each_object in loaded_objects:
-                key = "{}.{}".format(each_object.__class__.__name__, each.object.id)
+                key = "{}.{}".format(each_object.__class__.__name__, each_object.id)
                 instance_dict[key] = each_object
         return instance_dict
-
-
 
     def new(self, obj):
         """
