@@ -83,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-        obj_dict = storage.all()
+        obj_dict = storage.all(args[0])
         try:
             eval(args[0])
         except NameError:
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
-        objects = storage
+        objects = storage.all()
         try:
             if len(args) != 0:
                 eval(args)
@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 obj_list.append(value)
         else:
-            for key, value in storage.all(args).items():
+            for key, value in storage.all(eval(args)).items():
                 obj_list.append(value)
         print(obj_list)
 

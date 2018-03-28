@@ -15,7 +15,9 @@ class State(BaseModel, Base):
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
 
-    if getenv("HBNB_TYPE_STORAGE") == "file":
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        cities = relationship('City', backref='state', cascade='delete')
+    else:
         @property
         def cities(self):
             new_list = []
@@ -23,6 +25,6 @@ class State(BaseModel, Base):
                 if value[state_id] == self.id and value[__class__] == 'City':
                     new_list.append(value)
             return new_list
-    else:
-        cities = relationship('City', backref='state', cascade='delete')
+
+
 
