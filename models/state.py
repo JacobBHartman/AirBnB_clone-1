@@ -26,6 +26,3 @@ class State(BaseModel, Base):
                 if value[state_id] == self.id and value[__class__] == 'City':
                     new_list.append(value)
             return new_list
-
-
-
