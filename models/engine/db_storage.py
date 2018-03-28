@@ -41,6 +41,7 @@ class DBStorage:
         :param cls: the class to be checked
         :return: return a dictionary of all objects found
         """
+        print("inside db")
         if cls is None:
             target_classes = list(classes.values())
         elif cls is not None and cls in classes:
@@ -48,7 +49,10 @@ class DBStorage:
 
         instance_dict = {}
         for each_class in target_classes:
-            loaded_objects = self.__session.query(each_class)
+            try:
+                loaded_objects = self.__session.query(each_class).all()
+            except:
+                continue
             for each_object in loaded_objects:
                 key = "{}.{}".format(each_object.__class__.__name__, each_object.id)
                 instance_dict[key] = each_object

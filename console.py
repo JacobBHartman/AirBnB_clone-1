@@ -6,7 +6,7 @@ import cmd
 import json
 import shlex
 from models import storage
-
+from models import classes
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
@@ -45,9 +45,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         try:
-            args = shlex.split(args, posix=False)
+            args = shlex.split(args)
             new_instance = eval(args[0])()
-            
+            print(new_instance)
+            print("created a new instance")
             ''' filter the dict '''
             for arg in range(len(args)):
                 if '=' in args[arg]:
@@ -65,8 +66,9 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         break
                     setattr(new_instance, key, value)
-
+            print("trying to save the instance")
             new_instance.save()
+            print("saved the instance")
             print(new_instance.id)
         except:
             print("** class doesn't exist **")
@@ -129,6 +131,7 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
+        print("enter")
         objects = storage.all()
         try:
             if len(args) != 0:
