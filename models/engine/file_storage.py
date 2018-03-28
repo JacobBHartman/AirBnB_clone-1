@@ -17,7 +17,6 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        print("inside filestorage")
         if cls != None:
             objs_of_one_class = {}
             for key, value in self.__objects.items():
