@@ -7,7 +7,6 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
 
-
 class Amenity(BaseModel):
     """
         Implementation for the Amenities.
