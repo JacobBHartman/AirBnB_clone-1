@@ -3,7 +3,6 @@
     Define the class Place.
 """
 from models.base_model import BaseModel, Base
-from models.amenity import Amenity
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
@@ -15,6 +14,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
                                   places.id), nullable=False),
                               Column('amenity_id', String(60), ForeignKey(
                                   amenities.id), nullable=False))
+
 
 class Place(BaseModel, Base):
     """
