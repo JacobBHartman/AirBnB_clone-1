@@ -48,36 +48,23 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args, posix=False)
             new_instance = eval(args[0])()
             ''' filter the dict '''
-            #            print("about to enter for loop")
             for arg in range(len(args)):
-                #                print("for iteration - arg: {}".format(arg))
                 if '=' in args[arg]:
-                    #                    print("DEBUG: entered if")
                     key, value = args[arg].split('=')
-                    #                    print("DEBUG: value[0]={}".format(value[0]))
                     if value[0] == "\"" and value[len(value) - 1] == value[0]:
-                        #                        print("DEBUG: 1")
                         value = value[1:len(value) - 1]
                         value = value.replace("_", " ")
                         for idx in range(len(value)):
                             if value[idx] == "\"":
                                 value = value[:idx] + "\\" + value[idx:]
                     elif '.' in value:
-                        #                        print("DEBUG: 2")
                         value = float(value)
                     elif value.isdigit():
-                        #                        print("DEBUG: 3")
                         value = int(value)
                     else:
-                        #                        print("DEBUG: 4")
                         continue
-                        #                    print("about to set attr")
-                        #                    print("key: {}".format(key))
-                        #                    print("val: {}".format(value))
                     
                     setattr(new_instance, key, value)
-
-                    #                   print("we set da attr")
 
             new_instance.save()
             print(new_instance.id)
