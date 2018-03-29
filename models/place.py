@@ -57,9 +57,9 @@ class Place(BaseModel, Base):
             """
             new_dict = models.storage.all(models.classes["Amenity"])
             for key, value in new_dict.items():
-                if value.id  == self.id:
-                    amenity_ids.append(value)
-            return amenity_ids
+                if value.id == self.id:
+                    self.amenity_ids.append(value)
+            return self.amenity_ids
 
 
         @amenities.setter
