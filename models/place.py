@@ -75,3 +75,16 @@ class Place(BaseModel, Base):
                     self.amenity_ids.append(value.id)
 
 
+        @property
+        def review(self):
+            """
+            Returns a list of Review instances where the place_id is the same
+            as the current Place.id
+            """
+            classchecker_dict = models.storage.all(models.classes["Review"])
+            review_instances = []
+            current = self.id
+            for key, value in classchecker_dict.items():
+                if value.place_id == current:
+                    review_instances.append(value)
+            return review_instances
