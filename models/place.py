@@ -57,8 +57,10 @@ class Place(BaseModel, Base):
             """
             new_dict = models.storage.all(models.classes["Amenity"])
             for key, value in new_dict.items():
-                if value.i
-            return self.amenity_ids
+                if value.id  == self.id:
+                    amenity_ids.append(value)
+            return amenity_ids
+
 
         @amenities.setter
         def amenities(self, obj=None):
@@ -76,7 +78,7 @@ class Place(BaseModel, Base):
 
 
         @property
-        def review(self):
+        def reviews(self):
             """
             Returns a list of Review instances where the place_id is the same
             as the current Place.id
