@@ -41,7 +41,6 @@ class DBStorage:
         :param cls: the class to be checked
         :return: return a dictionary of all objects found
         """
-        print("inside db")
         if cls is None:
             target_classes = list(classes.values())
         elif cls is not None and cls in classes:

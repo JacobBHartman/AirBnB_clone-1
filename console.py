@@ -48,35 +48,37 @@ class HBNBCommand(cmd.Cmd):
             args = shlex.split(args, posix=False)
             new_instance = eval(args[0])()
             ''' filter the dict '''
-#            print("about to enter for loop")
+            #            print("about to enter for loop")
             for arg in range(len(args)):
-#                print("for iteration - arg: {}".format(arg))
+                #                print("for iteration - arg: {}".format(arg))
                 if '=' in args[arg]:
-#                    print("DEBUG: entered if")
+                    #                    print("DEBUG: entered if")
                     key, value = args[arg].split('=')
-#                    print("DEBUG: value[0]={}".format(value[0]))
+                    #                    print("DEBUG: value[0]={}".format(value[0]))
                     if value[0] == "\"" and value[len(value) - 1] == value[0]:
-#                        print("DEBUG: 1")
+                        #                        print("DEBUG: 1")
                         value = value[1:len(value) - 1]
                         value = value.replace("_", " ")
                         for idx in range(len(value)):
                             if value[idx] == "\"":
                                 value = value[:idx] + "\\" + value[idx:]
                     elif '.' in value:
-#                        print("DEBUG: 2")
+                        #                        print("DEBUG: 2")
                         value = float(value)
                     elif value.isdigit():
-#                        print("DEBUG: 3")
+                        #                        print("DEBUG: 3")
                         value = int(value)
                     else:
-#                        print("DEBUG: 4")
+                        #                        print("DEBUG: 4")
                         continue
-#                    print("about to set attr")
-#                    print("key: {}".format(key))
-#                    print("val: {}".format(value))
-#                    print("DEBUG - type of value: {}".format(type(value)))
+                        #                    print("about to set attr")
+                        #                    print("key: {}".format(key))
+                        #                    print("val: {}".format(value))
+                    
                     setattr(new_instance, key, value)
- #                   print("we set da attr")
+
+                    #                   print("we set da attr")
+
             new_instance.save()
             print(new_instance.id)
         except:
@@ -140,6 +142,7 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
+        print("DEBUG: Where does storage.all() take us?")
         objects = storage.all()
         try:
             if len(args) != 0:
@@ -147,12 +150,12 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
             return
-        if len(args) == 0:
-            for key, value in storage.all().items():
-                obj_list.append(value)
-        else:
-            for key, value in storage.all(eval(args)).items():
-                obj_list.append(value)
+        for key, val in objects.items():
+            if len(args) != 0:
+                if type(val) is eval(args):
+                    obj_list.append(val)
+            else:
+                obj_list.append(val)
         print(obj_list)
 
     def do_update(self, args):

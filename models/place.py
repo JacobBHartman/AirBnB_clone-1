@@ -7,6 +7,12 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
 
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id', String(60), ForeignKey(
+                          'places.id'), nullable=False),
+                      Column('amenity_id', String(60), ForeignKey(
+                          'amenities.id'), nullable=False))
+    
 
 
 class Place(BaseModel, Base):
@@ -31,12 +37,6 @@ class Place(BaseModel, Base):
         reviews = relationship('Review', backref='place', cascade='delete')
         amenities = relationship('Amenity', secondary=place_amenity,
                                  viewonly=False)
-        place_amenity = Table('place_amenity', Base.metadata,
-                              Column('place_id', String(60), ForeignKey(
-                                  'places.id'), nullable=False),
-                              Column('amenity_id', String(60), ForeignKey(
-                                  'amenities.id'), nullable=False))
-
     else:
         city_id = ""
         user_id = ""
