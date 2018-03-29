@@ -6,6 +6,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
+import models
 
 place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id', String(60), ForeignKey(
@@ -33,7 +34,6 @@ class Place(BaseModel, Base):
         price_by_night = Column(Integer, default=0, nullable=False)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
-        amenity_ids = []
         reviews = relationship('Review', backref='place', cascade='delete')
         amenities = relationship('Amenity', secondary=place_amenity,
                                  viewonly=False)
@@ -55,6 +55,9 @@ class Place(BaseModel, Base):
             """
             Returns list of Amenity instances based on amenity_ids
             """
+            new_dict = models.storage.all(models.classes["Amenity"])
+            for key, value in new_dict.items():
+                if value.i
             return self.amenity_ids
 
         @amenities.setter
