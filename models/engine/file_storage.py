@@ -17,19 +17,14 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        print("DEBUG: Does consoloe.do_all() take us here?")
         if cls != None:
-            print("entered IF")
             objs_of_one_class = {}
             for key, value in self.__objects.items():
                 if cls == type(value):
                     objs_of_one_class[key] = value
-            print("\nDEBUG: {}\n".format(objs_of_one_class))
             return objs_of_one_class
         else:
-            print("entered ELSE")
             return self.__objects
-        print("entereed NEITHER")
 
     def new(self, obj):
         '''

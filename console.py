@@ -142,7 +142,6 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
-        print("DEBUG: Where does storage.all() take us?")
         objects = storage.all()
         try:
             if len(args) != 0:
