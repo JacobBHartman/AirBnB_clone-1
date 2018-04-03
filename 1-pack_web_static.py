@@ -7,6 +7,7 @@
 from fabric.api import *
 from time import strftime
 
+
 def do_pack():
     archive_name = "web_static_" + strftime("%Y%m%d%H%M%S") + ".tgz"
     try:
