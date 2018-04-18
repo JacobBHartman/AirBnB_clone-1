@@ -6,10 +6,12 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello(strict_slashes=False):
     ''' This method returns a simple piece of text '''
     return 'Hello HBNB!'
+
 
 @app.route('/hbnb')
 def hbnb(strict_slashes=False):
