@@ -17,7 +17,7 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        if cls != None:
+        if cls is not None:
             objs_of_one_class = {}
             for key, value in self.__objects.items():
                 if cls == type(value):

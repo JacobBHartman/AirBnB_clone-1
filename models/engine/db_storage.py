@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """
 Creating class DBStorage to store objects in a MySQL Database
@@ -53,7 +52,8 @@ class DBStorage:
             except:
                 continue
             for each_object in loaded_objects:
-                key = "{}.{}".format(each_object.__class__.__name__, each_object.id)
+                key = "{}.{}".format(each_object.__class__.__name__,
+                                     each_object.id)
                 instance_dict[key] = each_object
         return instance_dict
 
@@ -82,7 +82,8 @@ class DBStorage:
         create all tables in the database
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 
