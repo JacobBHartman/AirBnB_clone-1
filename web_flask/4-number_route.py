@@ -6,26 +6,31 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route('/', strict_slashes=False)
 def hello():
     ''' This method returns a simple piece of text '''
     return 'Hello HBNB!'
+
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     ''' This method returns a simple piece of text '''
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     ''' This method returns a simple piece of text '''
     return 'C {}'.format(text.replace('_', ' '))
+
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_text(text='is cool'):
     ''' This method returns a simple piece of text '''
     return 'Python {}'.format(text.replace('_', ' '))
+
 
 @app.route('/number/<int:n>', strict_slashes=False)
 def is_n_a_number(n):
